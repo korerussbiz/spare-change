@@ -20,10 +20,7 @@
             padding: 20px;
             box-sizing: border-box;
         }
-        h1, h2 {
-            color: #f0b90b;
-            text-align: center;
-        }
+        h1, h2 { color: #f0b90b; text-align: center; }
         .card {
             background: #1a1f2e;
             border-radius: 16px;
@@ -31,20 +28,8 @@
             margin: 20px 0;
             box-shadow: 0 4px 12px rgba(0,0,0,0.4);
         }
-        .diagram {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            margin: 20px 0;
-        }
-        .flow-row {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
+        .diagram { display: flex; flex-direction: column; align-items: center; gap: 10px; margin: 20px 0; }
+        .flow-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: center; }
         .box {
             background: #2a3346;
             color: #fff;
@@ -54,16 +39,8 @@
             font-weight: bold;
             min-width: 120px;
         }
-        .arrow {
-            font-size: 24px;
-            color: #f0b90b;
-        }
-        .price {
-            font-size: 28px;
-            font-weight: bold;
-            color: #4caf50;
-            text-align: center;
-        }
+        .arrow { font-size: 24px; color: #f0b90b; }
+        .price { font-size: 28px; font-weight: bold; color: #4caf50; text-align: center; }
         .address {
             background: #111;
             padding: 10px;
@@ -84,9 +61,7 @@
             transition: background 0.3s;
             margin-top: 10px;
         }
-        button:hover {
-            background: #d4a30a;
-        }
+        button:hover { background: #d4a30a; }
         input {
             padding: 10px;
             font-size: 16px;
@@ -97,11 +72,8 @@
             width: 100px;
             text-align: center;
         }
-        .status {
-            margin-top: 15px;
-            color: #ff9800;
-            text-align: center;
-        }
+        .status { margin-top: 15px; color: #ff9800; text-align: center; }
+        .paypal { text-align: center; margin-top: 20px; }
     </style>
 </head>
 <body>
@@ -123,9 +95,7 @@
                 <span class="arrow">→</span>
                 <div class="box">📥 Deposit into<br>Spare Change Platform</div>
             </div>
-            <div class="flow-row">
-                <span class="arrow">↓</span>
-            </div>
+            <div class="flow-row"><span class="arrow">↓</span></div>
             <div class="flow-row">
                 <div class="box">📈 Automated Trading<br>& Stock Exchanges</div>
                 <span class="arrow">→</span>
@@ -160,31 +130,63 @@
         <div style="text-align:center;">
             <label for="amount">Amount in SPC:</label>
             <input type="number" id="amount" value="100" min="1" step="1" />
-            <button onclick="buy()">Buy SPC</button>
+            <button onclick="buy()">Buy with Crypto</button>
+            <button onclick="connect()">Connect Wallet</button>
         </div>
-        <div id="status" class="status">Connect MetaMask and buy.</div>
+        <div id="status" class="status">Use WalletConnect or MetaMask.</div>
+
+        <div class="paypal">
+            <p>Or pay with PayPal:</p>
+            <a href="https://paypal.me/korerussbiz" target="_blank">
+                <img src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" alt="PayPal" style="max-width:200px;">
+            </a>
+            <p style="color:#ccc;font-size:14px;">After PayPal payment, SPC tokens will be sent manually. Include your Polygon wallet address in the PayPal note.</p>
+        </div>
     </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.0/dist/ethers.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/web3modal@1.9.12/dist/web3modal.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@walletconnect/web3-provider@1.8.0/dist/umd/index.min.js"></script>
 <script>
     const SALE_ADDRESS = "0x02D785042Cd2D71429FCb804CF6675289064a15F";
     const TOKEN_ADDRESS = "0x7408b2CF7ccE868f8CE7451E60496E2E651F35CC";
-    let provider, signer, saleContract;
+    const WALLETCONNECT_PROJECT_ID = "your-project-id";
+
+    let provider, signer, saleContract, web3Modal;
+
+    async function initModal() {
+        const providerOptions = {
+            walletconnect: {
+                package: window.WalletConnectProvider.default,
+                options: {
+                    rpc: {
+                        137: "https://polygon-bor.publicnode.com"
+                    },
+                    projectId: WALLETCONNECT_PROJECT_ID
+                }
+            }
+        };
+        web3Modal = new window.Web3Modal.default({
+            network: "mainnet",
+            cacheProvider: true,
+            providerOptions
+        });
+    }
 
     async function connect() {
-        if (window.ethereum) {
-            provider = new ethers.BrowserProvider(window.ethereum);
-            signer = await provider.getSigner();
-            saleContract = new ethers.Contract(SALE_ADDRESS, [
-                "function buy(uint256 amount) payable",
-                "function pricePerTokenWei() view returns (uint256)",
-                "function tokenDecimals() view returns (uint8)"
-            ], signer);
-            document.getElementById('status').innerText = "Connected: " + (await signer.getAddress());
-        } else {
-            alert("Please install MetaMask");
-        }
+        await initModal();
+        const instance = await web3Modal.connect();
+        const ethersProvider = new ethers.BrowserProvider(instance);
+        provider = ethersProvider;
+        signer = await ethersProvider.getSigner();
+        saleContract = new ethers.Contract(SALE_ADDRESS, [
+            "function buy(uint256 amount) payable",
+            "function pricePerTokenWei() view returns (uint256)",
+            "function tokenDecimals() view returns (uint8)"
+        ], signer);
+        const address = await signer.getAddress();
+        document.getElementById('status').innerText = "Connected: " + address;
     }
 
     async function buy() {
@@ -199,20 +201,14 @@
         try {
             const price = await saleContract.pricePerTokenWei();
             const totalCost = BigInt(amount) * price;
-            document.getElementById('status').innerText = "Confirm transaction in MetaMask...";
+            document.getElementById('status').innerText = "Confirm transaction...";
             const tx = await saleContract.buy(BigInt(amount), { value: totalCost });
             await tx.wait();
-            document.getElementById('status').innerText = "✅ Purchase successful! SPC sent to your wallet.";
+            document.getElementById('status').innerText = "✅ Purchase successful!";
         } catch (e) {
             document.getElementById('status').innerText = "Error: " + (e.reason || e.message);
         }
     }
-
-    window.addEventListener('load', () => {
-        if (window.ethereum) {
-            connect();
-        }
-    });
 </script>
 </body>
 </html>
