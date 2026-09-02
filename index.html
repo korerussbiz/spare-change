@@ -136,13 +136,18 @@
         <div id="status" class="status">Use WalletConnect or MetaMask.</div>
 
         <div class="paypal">
-            <p>Or pay with PayPal:</p>
-            <a href="https://paypal.me/korerussbiz" target="_blank">
-                <img src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" alt="PayPal" style="max-width:200px;">
-            </a>
-            <p style="color:#ccc;font-size:14px;">After PayPal payment, SPC tokens will be sent manually. Include your Polygon wallet address in the PayPal note.</p>
-        </div>
-    </div>
+    <p>Or pay with PayPal:</p>
+    <div id="paypal-container-BZZ82FQEQP7U8"></div>
+    <p style="color:#ccc;font-size:14px;">After PayPal payment, SPC tokens will be sent manually. Include your Polygon wallet address in the PayPal note.</p>
+</div>
+
+<!-- PayPal SDK -->
+<script src="https://www.paypal.com/sdk/js?client-id=BAAFRCwaoQ9XIacNVgBoRR0lsGcKdfRKLPzOk2XytkVFr3KH4LkmIk5KTQrNos6KZU1bUOnh254NcGVggs&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
+<script>
+  paypal.HostedButtons({
+    hostedButtonId: "BZZ82FQEQP7U8",
+  }).render("#paypal-container-BZZ82FQEQP7U8")
+</script></div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.0/dist/ethers.umd.min.js"></script>
