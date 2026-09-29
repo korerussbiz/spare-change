@@ -1,215 +1,219 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Spare Change (SPC) — Buy on Polygon</title>
-<meta name="description" content="Spare Change (SPC) — the $0.01 micro-investment token on Polygon. Buy with PayPal or WalletConnect. Korerussbiz, Montego Bay, Jamaica.">
-<style>
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #0d0f1a;
-    color: #eee;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-  }
-  .container { max-width: 900px; width: 100%; }
-  h1 { color: #f0b90b; text-align: center; margin: 8px 0; }
-  .sub { color: #aaa; text-align: center; margin: 0 0 24px; }
-  .card {
-    background: #1a1f2e;
-    border-radius: 16px;
-    padding: 22px;
-    margin: 16px 0;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.4);
-  }
-  .video-wrap {
-    position: relative;
-    width: 100%;
-    border-radius: 16px;
-    overflow: hidden;
-    background: #000;
-    margin-bottom: 20px;
-  }
-  video { display: block; width: 100%; height: auto; }
-  .price { font-size: 24px; font-weight: bold; color: #4caf50; text-align: center; margin: 10px 0; }
-  .addr {
-    background: #111;
-    padding: 12px;
-    border-radius: 8px;
-    font-family: monospace;
-    font-size: 13px;
-    word-break: break-all;
-    color: #ccc;
-    margin: 8px 0;
-  }
-  button {
-    background: #f0b90b;
-    color: #000;
-    border: none;
-    padding: 12px 24px;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 30px;
-    cursor: pointer;
-    margin: 6px 4px;
-  }
-  button:hover { background: #d4a30a; }
-  input[type=number] {
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 8px;
-    border: 1px solid #555;
-    background: #111;
-    color: #fff;
-    width: 110px;
-    text-align: center;
-  }
-  .row { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; margin: 10px 0; }
-  .status { margin-top: 12px; color: #ff9800; text-align: center; font-size: 14px; }
-  .paypal-btn {
-    display: inline-block;
-    background: #0070ba;
-    color: #fff;
-    padding: 12px 24px;
-    border-radius: 30px;
-    text-decoration: none;
-    font-weight: bold;
-    margin: 8px 0;
-  }
-  a { color: #80a0f0; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spare Change (SPC) – Buy Now</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0d0f1a;
+            color: #eee;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            max-width: 900px;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        h1, h2 { color: #f0b90b; text-align: center; }
+        .card {
+            background: #1a1f2e;
+            border-radius: 16px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+        }
+        .diagram { display: flex; flex-direction: column; align-items: center; gap: 10px; margin: 20px 0; }
+        .flow-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: center; }
+        .box {
+            background: #2a3346;
+            color: #fff;
+            padding: 12px 18px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            min-width: 120px;
+        }
+        .arrow { font-size: 24px; color: #f0b90b; }
+        .price { font-size: 28px; font-weight: bold; color: #4caf50; text-align: center; }
+        .address {
+            background: #111;
+            padding: 10px;
+            border-radius: 8px;
+            font-family: monospace;
+            word-break: break-all;
+            color: #ccc;
+        }
+        button {
+            background: #f0b90b;
+            color: #000;
+            border: none;
+            padding: 14px 28px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+        button:hover { background: #d4a30a; }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid #555;
+            background: #111;
+            color: #fff;
+            width: 100px;
+            text-align: center;
+        }
+        .status { margin-top: 15px; color: #ff9800; text-align: center; }
+        .paypal { text-align: center; margin-top: 20px; }
+    </style>
 </head>
 <body>
 <div class="container">
-  <h1>Spare Change (SPC)</h1>
-  <p class="sub">The $0.01 Micro-Investment Token — live on Polygon</p>
+    <h1>🚀 Spare Change (SPC)</h1>
+    <p style="text-align:center; font-size:20px;">Turn pocket change into working capital – and own part of the future platform.</p>
 
-  <div class="card">
-    <h2 style="text-align:center;color:#f0b90b;">Buy Spare Change (SPC)</h2>
-    <p class="price">$0.01 per SPC (PayPal) &nbsp;|&nbsp; $0.0009 per SPC (Crypto)</p>
-
-    <div class="row">
-      <label for="amount">Amount (SPC):</label>
-      <input type="number" id="amount" value="100" min="1" step="1">
+    <div class="card">
+        <h2>What is SPC?</h2>
+        <p>Spare Change (SPC) is a token, not the actual platform. It is being issued now to raise funds to build the full Spare Change platform by Korerussbiz. By buying SPC today, you are not just holding a token – you are securing future shares in the upcoming platform.</p>
+        <p>Platform launch estimate: 2027–2028, depending on country laws and government policies.</p>
     </div>
 
-    <div class="row">
-      <button onclick="connect()">Connect Wallet</button>
-      <button onclick="buy()">Buy with Crypto</button>
+    <div class="card">
+        <h2>How the Platform Will Work</h2>
+        <div class="diagram">
+            <div class="flow-row">
+                <div class="box">💵 Spare Change<br>($0.01 or any small amount)</div>
+                <span class="arrow">→</span>
+                <div class="box">📥 Deposit into<br>Spare Change Platform</div>
+            </div>
+            <div class="flow-row"><span class="arrow">↓</span></div>
+            <div class="flow-row">
+                <div class="box">📈 Automated Trading<br>& Stock Exchanges</div>
+                <span class="arrow">→</span>
+                <div class="box">💰 Profits credited<br>to individual user</div>
+            </div>
+        </div>
+        <p style="text-align:center;">Each user gets a private dashboard to see deposits, transactions, and earnings in real time.</p>
     </div>
 
-    <div id="status" class="status">Connect a wallet to buy with crypto, or use PayPal below.</div>
-
-    <div style="text-align:center;margin-top:20px;">
-      <p>Or pay with PayPal:</p>
-      <a class="paypal-btn" href="https://paypal.me/korerussbiz" target="_blank">Pay with PayPal</a>
-      <p style="font-size:12px;color:#aaa;">Include your Polygon wallet address in the PayPal note.</p>
+    <div class="card">
+        <h2>Why Buy SPC Now?</h2>
+        <div class="diagram">
+            <div class="flow-row">
+                <div class="box">🪙 Buy SPC<br>($0.0009 each)</div>
+                <span class="arrow">→</span>
+                <div class="box">🏗️ Fund Platform<br>Development</div>
+                <span class="arrow">→</span>
+                <div class="box">📜 Receive Future<br>Shares in Platform</div>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <div class="card">
-    <h3 style="color:#f0b90b;">Contracts (Polygon)</h3>
-    <p>Sale contract:</p>
-    <div class="addr">0x02D785042Cd2D71429FCb804CF6675289064a15F</div>
-    <p>Token contract:</p>
-    <div class="addr">0x7408b2CF7ccE868f8CE7451E60496E2E651F35CC</div>
-    <p style="font-size:13px;color:#aaa;">Verify on <a href="https://polygonscan.com/address/0x02D785042Cd2D71429FCb804CF6675289064a15F" target="_blank">PolygonScan</a></p>
-  </div>
+    <div class="card">
+        <h2>Buy Spare Change (SPC)</h2>
+        <p class="price">$0.0009 per SPC</p>
+        <p style="text-align:center;">Network: Polygon (low fees)</p>
+        <p style="text-align:center;">Token Contract:</p>
+        <div class="address">0x7408b2CF7ccE868f8CE7451E60496E2E651F35CC</div>
+        <p style="text-align:center;">Sale Contract:</p>
+        <div class="address">0x02D785042Cd2D71429FCb804CF6675289064a15F</div>
+        <br>
+        <div style="text-align:center;">
+            <label for="amount">Amount in SPC:</label>
+            <input type="number" id="amount" value="100" min="1" step="1" />
+            <button onclick="buy()">Buy with Crypto</button>
+            <button onclick="connect()">Connect Wallet</button>
+        </div>
+        <div id="status" class="status">Use WalletConnect or MetaMask.</div>
 
-  <div class="card">
-    <h3 style="color:#f0b90b;">About Spare Change</h3>
-    <p>Spare Change (SPC) is a for-profit program by Korerussbiz that turns everyday pocket change into working capital.</p>
-    <p style="font-size:13px;color:#aaa;">Korerussbiz — Montego Bay, St. James, Jamaica | korerussbiz@gmail.com</p>
-  </div>
+        <div class="paypal">
+    <p>Or pay with PayPal:</p>
+    <div id="paypal-container-BZZ82FQEQP7U8"></div>
+    <p style="color:#ccc;font-size:14px;">After PayPal payment, SPC tokens will be sent manually. Include your Polygon wallet address in the PayPal note.</p>
+</div>
+
+<!-- PayPal SDK -->
+<script src="https://www.paypal.com/sdk/js?client-id=BAAFRCwaoQ9XIacNVgBoRR0lsGcKdfRKLPzOk2XytkVFr3KH4LkmIk5KTQrNos6KZU1bUOnh254NcGVggs&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
+<script>
+  paypal.HostedButtons({
+    hostedButtonId: "BZZ82FQEQP7U8",
+  }).render("#paypal-container-BZZ82FQEQP7U8")
+</script></div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.0/dist/ethers.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/web3modal@1.9.12/dist/web3modal.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@walletconnect/web3-provider@1.8.0/dist/umd/index.min.js"></script>
 <script>
-// Safe fallback: if WalletConnect SDK fails to load, we still allow basic MetaMask.
-const SALE_ADDRESS = "0x02D785042Cd2D71429FCb804CF6675289064a15F";
-const WALLETCONNECT_PROJECT_ID = "wcp_wxFs-0osBTIkgUHmgsECLqXlXankPazx";
+    const SALE_ADDRESS = "0x02D785042Cd2D71429FCb804CF6675289064a15F";
+    const TOKEN_ADDRESS = "0x7408b2CF7ccE868f8CE7451E60496E2E651F35CC";
+    const WALLETCONNECT_PROJECT_ID = "your-project-id";
 
-let provider, signer, saleContract, wcProvider;
+    let provider, signer, saleContract, web3Modal;
 
-function setStatus(msg) {
-  const el = document.getElementById('status');
-  if (el) el.innerText = msg;
-  console.log("[status]", msg);
-}
-
-async function connect() {
-  setStatus("Connecting...");
-  try {
-    // 1. MetaMask / browser wallet path
-    if (window.ethereum) {
-      provider = new ethers.BrowserProvider(window.ethereum);
-      await provider.send("eth_requestAccounts", []);
-      signer = await provider.getSigner();
-      const addr = await signer.getAddress();
-      setStatus("Connected (MetaMask): " + addr);
-    } else if (window.WalletConnectEthereumProvider) {
-      // 2. WalletConnect v2 path (only if the SDK loaded)
-      wcProvider = await window.WalletConnectEthereumProvider.init({
-        projectId: WALLETCONNECT_PROJECT_ID,
-        chains: [137],
-        optionalChains: [137],
-        showQrModal: true,
-        rpcMap: { 137: "https://polygon-bor.publicnode.com" },
-        metadata: {
-          name: "Spare Change (SPC)",
-          description: "Micro-investment token on Polygon",
-          url: "https://spare-change-01.vercel.app/",
-          icons: ["https://spare-change-01.vercel.app/kbiz_logo.png"]
-        }
-      });
-      await wcProvider.connect();
-      provider = new ethers.BrowserProvider(wcProvider);
-      signer = await provider.getSigner();
-      const addr = await signer.getAddress();
-      setStatus("Connected (WalletConnect): " + addr);
-    } else {
-      setStatus("No wallet detected. Install MetaMask or a WalletConnect wallet.");
-      return;
+    async function initModal() {
+        const providerOptions = {
+            walletconnect: {
+                package: window.WalletConnectProvider.default,
+                options: {
+                    rpc: {
+                        137: "https://polygon-bor.publicnode.com"
+                    },
+                    projectId: WALLETCONNECT_PROJECT_ID
+                }
+            }
+        };
+        web3Modal = new window.Web3Modal.default({
+            network: "mainnet",
+            cacheProvider: true,
+            providerOptions
+        });
     }
 
-    saleContract = new ethers.Contract(SALE_ADDRESS, [
-      "function buy(uint256 amount) payable",
-      "function pricePerTokenWei() view returns (uint256)"
-    ], signer);
-  } catch (e) {
-    console.error(e);
-    setStatus("Connection failed: " + (e.message || e));
-  }
-}
+    async function connect() {
+        await initModal();
+        const instance = await web3Modal.connect();
+        const ethersProvider = new ethers.BrowserProvider(instance);
+        provider = ethersProvider;
+        signer = await ethersProvider.getSigner();
+        saleContract = new ethers.Contract(SALE_ADDRESS, [
+            "function buy(uint256 amount) payable",
+            "function pricePerTokenWei() view returns (uint256)",
+            "function tokenDecimals() view returns (uint8)"
+        ], signer);
+        const address = await signer.getAddress();
+        document.getElementById('status').innerText = "Connected: " + address;
+    }
 
-async function buy() {
-  if (!saleContract) {
-    await connect();
-    if (!saleContract) return;
-  }
-  const amount = document.getElementById('amount').value;
-  if (!amount || amount <= 0) {
-    alert("Enter a valid amount");
-    return;
-  }
-  try {
-    const price = await saleContract.pricePerTokenWei();
-    const totalCost = BigInt(amount) * price;
-    setStatus("Confirm in your wallet...");
-    const tx = await saleContract.buy(BigInt(amount), { value: totalCost });
-    setStatus("Submitted: " + tx.hash);
-    await tx.wait();
-    setStatus("✅ Success! SPC sent to your wallet.");
-  } catch (e) {
-    console.error(e);
-    setStatus("Error: " + (e.reason || e.message));
-  }
-}
+    async function buy() {
+        if (!saleContract) {
+            await connect();
+        }
+        const amount = document.getElementById('amount').value;
+        if (!amount || amount <= 0) {
+            alert("Enter a valid amount");
+            return;
+        }
+        try {
+            const price = await saleContract.pricePerTokenWei();
+            const totalCost = BigInt(amount) * price;
+            document.getElementById('status').innerText = "Confirm transaction...";
+            const tx = await saleContract.buy(BigInt(amount), { value: totalCost });
+            await tx.wait();
+            document.getElementById('status').innerText = "✅ Purchase successful!";
+        } catch (e) {
+            document.getElementById('status').innerText = "Error: " + (e.reason || e.message);
+        }
+    }
 </script>
 </body>
 </html>
