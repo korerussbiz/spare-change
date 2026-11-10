@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "destination": "https://spare-change.pages.dev/$1",
+      "statusCode": 301
+    }
+  ]
+}
